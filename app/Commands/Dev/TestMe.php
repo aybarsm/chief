@@ -2,12 +2,8 @@
 
 namespace App\Commands\Dev;
 
-use App\Framework\Chief;
 use App\Framework\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 
 class TestMe extends Command
 {
@@ -17,7 +13,18 @@ class TestMe extends Command
 
     public function handle(): void
     {
-        dump(Chief::directories());
+//        $path = '/Users/aybarsm/.chief/storage/app/private';
+        $path = '/Users/aybarsm/.chief/falan/filan/saddsad';
+        $file = new \App\Support\SplFileInfo(filename: $path, isDirectory: true, mode: 0755);
+//        File::ensureDirectoryExists($file);
+        dump($file->ensureExists());
+//        dump($file->getPerms() & 0777);
+//        dump(0777 - umask());
+//        dump(0644);
+//        dump(printf( "%s\n", octdec($file->getPerms())));
+//        dump((int) substr(sprintf('%o', $file->getPerms()), -4));
+//        dump(Chief::directories());
+//        dump(resource_path('views'));
 //        File::ensureDirectoryExists(base_path());
 //        Log::warning('deneme');
 //        $app = app();
