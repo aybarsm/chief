@@ -1,22 +1,22 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
+    "name": "aybarsm/chief",
+    "description": "An opinionated PHP command-line toolkit",
     "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "homepage": "https://github.com/aybarsm/chief",
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/aybarsm/chief/issues",
+        "source": "https://github.com/aybarsm/chief"
     },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Murat Aybars",
+            "email": "murat.aybars@blrm.co"
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "laravel-zero/framework": "^12.0.2"
     },
     "require-dev": {
