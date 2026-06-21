@@ -6,5 +6,6 @@ return [
     'env' => 'development',
     'providers' => [
         App\Providers\AppServiceProvider::class,
+        App\Providers\ChiefServiceProvider::class,
     ],
 ];

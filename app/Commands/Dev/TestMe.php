@@ -5,6 +5,7 @@ namespace App\Commands\Dev;
 use App\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Env;
+use Illuminate\Support\Facades\App;
 
 class TestMe extends Command
 {
@@ -15,10 +16,11 @@ class TestMe extends Command
     public function handle(): void
     {
         dump([
-            'ALL' => $_ENV,
-            'get' => [
-                'HOME' => env('HOME'),
-            ],
+            'envFilePath' => App::environmentFilePath(),
+//            'ALL' => $_ENV,
+//            'get' => [
+//                'HOME' => env('HOME'),
+//            ],
         ]);
     }
 
