@@ -1,0 +1,23 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Command;
+use Illuminate\Console\Scheduling\Schedule;
+
+class DummyClass extends Command
+{
+    protected $signature = '{{ command }}';
+
+    protected $description = 'Command description';
+
+    public function handle()
+    {
+        //
+    }
+
+    public function schedule(Schedule $schedule): void
+    {
+        // $schedule->command(static::class)->everyMinute();
+    }
+}
