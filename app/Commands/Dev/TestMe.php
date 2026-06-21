@@ -16,7 +16,8 @@ class TestMe extends Command
     public function handle(): void
     {
         dump([
-            'envFilePath' => App::environmentFilePath(),
+//            'envFilePath' => App::environmentFilePath(),
+            ''
 //            'ALL' => $_ENV,
 //            'get' => [
 //                'HOME' => env('HOME'),

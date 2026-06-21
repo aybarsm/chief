@@ -1,7 +1,6 @@
 <?php
 
 use App\Framework\Application;
-use Illuminate\Foundation\Configuration\ApplicationBuilder;
 use Illuminate\Foundation\Application as LaravelApplication;
 
 //return with(
@@ -14,4 +13,11 @@ use Illuminate\Foundation\Application as LaravelApplication;
 //    ->create()
 //    ->useEnvironmentPath($this->environmentPath);
 
-return Application::configure(basePath: dirname(__DIR__))->create();
+//return Application::configure(basePath: dirname(__DIR__))->create();
+
+return with(
+    Application::configure(basePath: dirname(__DIR__))->create(),
+    static function (LaravelApplication $app): LaravelApplication {
+        
+    }
+);
