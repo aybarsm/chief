@@ -44,6 +44,11 @@
             "Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "post-root-package-install": [
+            "App\\Framework\\Chief::initFilesystem"
+        ]
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,

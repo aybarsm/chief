@@ -2,6 +2,7 @@
 
 namespace App\Commands\Dev;
 
+use App\Framework\Chief;
 use App\Framework\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 
@@ -13,11 +14,12 @@ class TestMe extends Command
 
     public function handle(): void
     {
-//        $path = '/Users/aybarsm/.chief/storage/app/private';
-        $path = '/Users/aybarsm/.chief/falan/filan/saddsad';
-        $file = new \App\Support\SplFileInfo(filename: $path, isDirectory: true, mode: 0755);
-//        File::ensureDirectoryExists($file);
-        dump($file->ensureExists());
+        dump(Chief::initFilesystem());
+////        $path = '/Users/aybarsm/.chief/storage/app/private';
+//        $path = '/Users/aybarsm/.chief/falan/filan/saddsad';
+//        $file = new \App\Support\SplFileInfo(filename: $path, isDirectory: true, mode: 0755);
+////        File::ensureDirectoryExists($file);
+//        dump($file->ensureExists());
 //        dump($file->getPerms() & 0777);
 //        dump(0777 - umask());
 //        dump(0644);

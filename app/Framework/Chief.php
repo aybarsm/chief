@@ -2,24 +2,41 @@
 
 namespace App\Framework;
 
+use App\Exceptions\ChiefException;
 use App\Support\Filesystem;
+use App\Support\SplFileInfo;
 class Chief
 {
-    public static function directories(): array
+    public static function initFilesystem(): true
+    {
+        foreach(static::filesystem() as $entry) {
+            /** @var SplFileInfo $entry */
+            $result = $entry->ensureExists(perms: true);
+            throw_if(
+                $result === false,
+                ChiefException::class,
+                sprintf('Failed to create: %s', $entry->getPathName())
+            );
+        }
+
+        return true;
+    }
+    public static function filesystem(): array
     {
         return [
-            'main' => static::path(),
-            'share' => static::pathShare(),
-            'app' => static::pathApp(),
-            'storage' => static::pathStorage(),
-            'storage.private' => static::pathStoragePrivate(),
-            'storage.public' => static::pathStoragePublic(),
-            'framework' => static::pathFramework(),
-            'cache' => static::pathCache(),
-            'cache.data' => static::pathCache('data'),
-            'database' => static::pathDatabase(),
-            'database.migrations' => static::pathDatabase('migrations'),
-            'views' => static::pathViews(),
+            new SplFileInfo(static::path(), true, 0750),
+            new SplFileInfo(static::pathShare(), true, 0755),
+            new SplFileInfo(static::pathStorage(), true, 0750),
+            new SplFileInfo(static::pathStorage('app'), true, 0750),
+            new SplFileInfo(static::pathStoragePrivate(), true, 0750),
+            new SplFileInfo(static::pathStoragePublic(), true, 0755),
+            new SplFileInfo(static::pathDatabase(), true, 0750),
+            new SplFileInfo(static::pathDatabase('migrations'), true, 0750),
+            new SplFileInfo(static::pathFramework(), true, 0750),
+            new SplFileInfo(static::pathCache(), true, 0750),
+            new SplFileInfo(static::pathCache('data'), true, 0750),
+            new SplFileInfo(static::pathResources(), true, 0750),
+            new SplFileInfo(static::pathViews(), true, 0750),
         ];
     }
     public static function path(string ...$paths): ?string
@@ -72,9 +89,14 @@ class Chief
         return static::path('logs', ...$paths);
     }
 
+    public static function pathResources(string ...$paths): ?string
+    {
+        return static::path('resources', ...$paths);
+    }
+
     public static function pathViews(string ...$paths): ?string
     {
-        return static::path('views');
+        return static::pathResources('views');
     }
 
     public static function makeApp(?string $basePath = null): Application
