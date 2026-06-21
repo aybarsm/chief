@@ -6,13 +6,15 @@ use Illuminate\Support\ServiceProvider;
 
 class ChiefServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         //
+        dump('Stage: Register ChiefServiceProvider');
     }
 
-    public function boot()
+    public function boot(): void
     {
         //
+        dump('Stage: Boot ChiefServiceProvider');
     }
 }

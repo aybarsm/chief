@@ -1,7 +1,8 @@
 <?php
 
-use App\Framework\Application;
-use Illuminate\Foundation\Application as LaravelApplication;
+use LaravelZero\Framework\Application;
+
+//return Application::configure(basePath: dirname(__DIR__))->create();
 
 //return with(
 //    Application::configure(basePath: dirname(__DIR__)),
@@ -18,6 +19,7 @@ use Illuminate\Foundation\Application as LaravelApplication;
 return with(
     Application::configure(basePath: dirname(__DIR__))->create(),
     static function (LaravelApplication $app): LaravelApplication {
+        dump('Stage: App Bootstrapping');
         return $app;
     }
 );

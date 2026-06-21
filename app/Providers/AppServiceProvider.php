@@ -6,13 +6,15 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        //
-    }
-
     public function register(): void
     {
         //
+        dump('Stage: Register AppServiceProvider');
+    }
+
+    public function boot(): void
+    {
+        //
+        dump('Stage: Boot AppServiceProvider');
     }
 }

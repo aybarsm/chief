@@ -6,6 +6,7 @@ use App\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
 
 class TestMe extends Command
 {
@@ -15,6 +16,7 @@ class TestMe extends Command
 
     public function handle(): void
     {
+        File::ensureDirectoryExists(base_path());
         dump([
 //            'envFilePath' => App::environmentFilePath(),
             ''
