@@ -12,7 +12,9 @@ class Filesystem
     {
         $osFam = \App\Enums\OsFamily::make();
         $basePath = $osFam->isWindows() ? getenv('USERPROFILE') : ($osFam->isUnix() ? getenv('HOME') : null);
-        if (blank($basePath) || $basePath === false) return null;
+        if ($basePath === null || $basePath === false) return null;
+        if (is_string($basePath) && trim($basePath) === '') return null;
+        if (is_array($basePath) && count($basePath) === 0) return null;
         $basePath = (is_array($basePath) ? array_values($basePath) : [$basePath])[0];
         return static::pathJoin($basePath, ...$paths);
     }
