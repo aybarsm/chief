@@ -5,14 +5,13 @@ define('LARAVEL_START', microtime(true));
 $autoloader = require file_exists(__DIR__.'/vendor/autoload.php') ?  __DIR__.'/vendor/autoload.php' : __DIR__.'/../../autoload.php';
 
 $app = require_once __DIR__.'/bootstrap/app.php';
-dump('Stage: Require App');
+
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
-dump('Stage: Make Kernel');
+
 $status = $kernel->handle(
     $input = new Symfony\Component\Console\Input\ArgvInput,
     new Symfony\Component\Console\Output\ConsoleOutput
 );
-dump('Stage: Handle');
 
 $kernel->terminate($input, $status);
 

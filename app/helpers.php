@@ -1,14 +1,22 @@
 <?php
 
-use function Illuminate\Filesystem\join_paths;
-
 if (! function_exists('user_home_path')) {
     function user_home_path(string ...$paths): ?string
     {
-        $osFam = \App\Enums\OsFamily::make();
-        $basePath = $osFam->isWindows() ? getenv('USERPROFILE') : ($osFam->isUnix() ? getenv('HOME') : null);
-        if (blank($basePath) || $basePath === false) return null;
-        $basePath = (is_array($basePath) ? array_values($basePath) : [$basePath])[0];
-        return join_paths($basePath, ...$paths);
+        return \App\Support\Filesystem::pathUserHome(...$paths);
+    }
+}
+
+if (! function_exists('chief_path')) {
+    function chief_path(string ...$paths): ?string
+    {
+        return \App\Framework\Chief::path(...$paths);
+    }
+}
+
+if (! function_exists('chief_share_path')) {
+    function chief_share_path(string ...$paths): ?string
+    {
+        return \App\Framework\Chief::pathShare(...$paths);
     }
 }

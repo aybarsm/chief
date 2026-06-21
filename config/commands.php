@@ -1,12 +1,15 @@
 <?php
 
+use App\Framework\Chief;
+
 return [
-    'default' => NunoMaduro\LaravelConsoleSummary\SummaryCommand::class,
+    'default' => Chief::commandsDefault(),
     'paths' => [
         app_path('Commands')
     ],
     'add' => [
-        //
+        \Illuminate\Cache\Console\CacheTableCommand::class,
+        \Illuminate\Database\Console\WipeCommand::class,
     ],
     'hidden' => [
 //        NunoMaduro\LaravelConsoleSummary\SummaryCommand::class,

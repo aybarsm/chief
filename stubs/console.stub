@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use App\Command;
+use App\Framework\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 
 class DummyClass extends Command

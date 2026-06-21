@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^8.4",
+        "illuminate/database": "^12.17",
         "illuminate/http": "^12.17",
         "illuminate/log": "^12.17",
         "illuminate/view": "^12.17",

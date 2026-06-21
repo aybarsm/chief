@@ -3,18 +3,19 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Framework\Chief;
 class ChiefServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         //
-        dump('Stage: Register ChiefServiceProvider');
     }
 
     public function boot(): void
     {
-        //
-        dump('Stage: Boot ChiefServiceProvider');
+        $migrationsPath = chief_path('database', 'migrations');
+        if (is_dir($migrationsPath)) {
+            $this->loadMigrationsFrom($migrationsPath);
+        }
     }
 }

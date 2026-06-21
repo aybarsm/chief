@@ -1,22 +1,38 @@
 <?php
 
 namespace App\Framework;
-use Illuminate\Foundation\Configuration\ApplicationBuilder;
+
 use LaravelZero\Framework\Application as LaravelZeroApplication;
 class Application extends LaravelZeroApplication
 {
-    public static function configure(?string $basePath = null): ApplicationBuilder
+    public static function init(?string $basePath = null): Application
     {
-        dump('Stage: Application Configure PRE');
-        $builder = parent::configure($basePath);
-        dump('Stage: Application Configure POST');
-        $app = $builder->create();
-        dump('LoadedProviders:', $app->getLoadedProviders());
-        return $builder;
+        $chiefPath = chief_path();
+
+        throw_if(
+            $chiefPath === null,
+            \App\Exceptions\ChiefException::class,
+            'Could not determine user home directory to set chief base path.',
+        );
+
+        $storagePath = chief_path('storage');
+        if (! is_dir($storagePath)) {
+            mkdir(
+                directory: chief_path('storage'),
+                permissions: 0750,
+                recursive: true
+            );
+        }
+
+        $app = Application::configure($basePath)->create();
+        $app->useEnvironmentPath($chiefPath);
+        $app->useStoragePath($storagePath);
+
+        return $app;
     }
 
-    public function create()
+    public static function isPhar(): bool
     {
-        return $this->app;
+        return \Phar::running(false);
     }
 }
