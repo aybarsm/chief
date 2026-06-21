@@ -41,3 +41,4 @@ app_packages/
 .vscode/
 .idea/
 /database/database.sqlite
+.env
