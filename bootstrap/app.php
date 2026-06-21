@@ -18,6 +18,6 @@ use Illuminate\Foundation\Application as LaravelApplication;
 return with(
     Application::configure(basePath: dirname(__DIR__))->create(),
     static function (LaravelApplication $app): LaravelApplication {
-        
+        return $app;
     }
 );
